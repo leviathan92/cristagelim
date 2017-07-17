@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/resources/template/administrador/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="titulo">Crear proveedor</ui:define>
+
+    <ui:define name="contenido">
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="content-box-large">
+                    <div class="panel-heading">
+                        <div class="panel-title"><h2>Ingresar nuevo proveedor</h2></div>
+
+
+                    </div>
+                    <div class="panel-body">
+
+                        <h:form id="form-usuario" prependId="false" class="form-horizontal" role="form">
+
+                            <div class="form-group">
+                                <label for="nitProveedor" class="col-sm-2 control-label">Nit proveedor</label>
+                                <div class="col-sm-10">
+                                    <h:inputText class="form-control" id="nitProveedor" a:placeholder="ingrese el nit proveedor" value="#{crearProveedor.nitProveedor}" required="true"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombreEmpresa" class="col-sm-2 control-label">Nombre empresa</label>
+                                <div class="col-sm-10">
+                                    <h:inputText class="form-control" id="nombreEmpresa" a:placeholder="ingrese el nombre de la empresa" value="#{crearProveedor.nombreEmpresa}" required="true"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="direccion" class="col-sm-2 control-label">Direccion</label>
+                                <div class="col-sm-10">
+                                    <h:inputText class="form-control" id="direccion" a:placeholder="ingrese la direccion de la empresa" value="#{crearProveedor.direccion}" required="true"/>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="representanteLegal" class="col-sm-2 control-label">Representante legal</label>
+                                <div class="col-sm-10">
+                                    <h:inputText class="form-control" id="representanteLegal" a:placeholder="ingrese el representante legal" value="#{crearProveedor.representanteLegal}" required="true"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-sm-offset-3 col-sm-3">
+                                    <h:commandButton action="#{crearProveedor.crear()}" class="btn btn-primary" value="Aceptar"></h:commandButton> 
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <h:commandButton action="#{crearProveedor.cancelar()}" class="btn btn" value="Cancelar"></h:commandButton> 
+                                </div>
+
+
+                            </div>
+                            
+                        </h:form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ui:define>
+
+    <ui:define name="ultimosScripts">
+        <script>
+            /* function openModal() {
+             #("myModal").modal("show");
+             
+             }*/
+
+            $().ready(function () {
+                $("#btnModal").click(function () {
+                    $("#myModal").modal("show");
+                });
+            });
+
+            $().ready(function () {
+                $(".btnModal1").click(function () {
+                    $("#myModal").modal("show");
+                });
+            });
+
+        </script>
+    </ui:define>
+</ui:composition>
+

@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <meta charset="utf-8"/>
+        <title>Contactanos</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/contactanos.css"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/fonts/icomoon.eot"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/fonts/style.css"/>
+        <link href="#{request.contextPath}/resources/css/styles(2).css" rel="stylesheet"/>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.slides.js"></script>
+    </h:head>
+    <h:body>
+        <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.xhtml"> <img id="imagen" src="#{request.contextPath}/resources/img/logosinfondo2.png"/></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#{request.contextPath}/index.xhtml">Inicio</a></li>
+                        <li><a href="#{request.contextPath}/login.xhtml"><i class="glyphicon glyphicon-lock"></i> Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="contenedormain">
+            <div class="fullmain">
+
+                <div id="contactanos">
+
+
+                    <h1 id="textocontactenos"></h1> 
+
+                </div>
+                <div id="left">
+                    <h2>Contactenos</h2>
+                    <label>Direccion:</label> 
+                    <a href="">Cra.13#6510,Bogotá</a>
+                    <br/>
+                    <label>Telefono:</label> 
+                    <a href="">311 224 4618</a>
+                    <br/>
+                    <label>Horario de atencion:</label> 
+                    <a href="">Lunes a viernes de 6:00 AM a 10:00 PM</a>
+                    <br/>
+                    <label>Correo electronico:</label>
+                    <a href="">orubio04@misena.edu.com</a>
+                    <br/>
+                    <br/>
+                    <h3>Mapa</h3>
+
+
+
+
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6687.760352831895!2d-74.10002786983699!3d4.671170481289166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9b0b582d4c35%3A0x8d5a835aae232cc3!2sAcr%C3%ADlicos+Innovacryl-LD!5e0!3m2!1ses!2ses!4v1498413421234" width="600" height="450" frameborder="0" style="border:0"></iframe>
+
+
+
+
+                </div>
+
+                <div id="right">
+
+                    <form id="formulario">
+                        <div class="row">
+                            <label for="name">Tu nombre:</label><br />
+                            <input id="name" class="input" name="name" type="text" value="" placeholder="Nombre*" size="30" required="true"/><br />
+                        </div>
+                        <div class="row">
+                            <label for="email">Tu email:</label><br />
+                            <input id="email" class="input" name="email" type="text" value="" size="30" placeholder="Email*" required="true"/><br />
+                        </div>
+                        <div class="row">
+                            <label for="message">Tu mensaje:</label><br />
+                            <textarea id="message" class="input" name="message" rows="7" cols="30" placeholder="" required="true"></textarea><br />
+                        </div>
+                        <label for="submit_button"></label>
+                        <input id="submit_button" type="submit" value="Enviar email"/>
+                    </form> 
+
+                </div>
+            </div>
+
+            <footer>
+                <div class="contenedor">
+                    <p class="copy">Fixed Up &copy; 2017</p>
+                    <div class="sociales">
+                        <a class="icon-facebook" href="https://es-la.facebook.com/innovacryl.ld/" target="_blank"></a>
+                        <a class="icon-twitter" href="https://twitter.com/innovacryl_ld" target="_blank"></a>
+                        <a class="icon-instagram" href="https://www.instagram.com/" target="_blank"></a>
+                        <a class="icon-paper-plane" href="#" target="_blank"></a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+    </h:body>
+</html>
+

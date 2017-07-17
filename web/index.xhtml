@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <meta charset="utf-8"/>
+        <title>inicio</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/index.css"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/fonts/icomoon.eot"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/fonts/style.css"/>
+        <link href="#{request.contextPath}/resources/css/styles.css(3)" rel="stylesheet"/>
+        <script src="#{request.contextPath}/resources/js/jqr_2.2.3.js"></script>
+        <script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/scripts(2).js"></script>
+        <script src="#{request.contextPath}/resources/js/jquery.slides.js"></script>
+
+    </h:head>
+    <h:body>
+        <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"> <img id="imagen" src="#{request.contextPath}/resources/img/logosinfondo2.png"/></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">Doc<span class="caret"></span></a>
+                            <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                                <li><a href="#{request.contextPath}/resources/docs/GTI-F-007_Formato_Documento_de_Arquitectura-2.docx">Dea</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#{request.contextPath}/contactanos.xhtml">Contacto</a></li>
+                        <li><a href="#{request.contextPath}/login.xhtml"><i class="glyphicon glyphicon-lock"></i> Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="contenedormain">
+            <div class="main">
+                <br/>
+                <br/>
+                <div class="slides">
+
+                    <img src="#{request.contextPath}/resources/img/18119119_676142409251443_4789973833318349576_n.jpg"/>
+                    <img src="#{request.contextPath}/resources/img/asistencia-veterinaria.jpeg"/>
+                    <img src="#{request.contextPath}/resources/img/omron-4.jpeg"/>
+                    <img src="#{request.contextPath}/resources/img/aviso-ala-broaster-refilada-de-vinilo.jpeg"/>
+                </div>
+            </div>
+            <script>
+                $(function () {
+                    $(".slides").slidesjs({
+                        play: {
+                            active: true,
+                            // [boolean] Generate the play and stop buttons.
+                            // You cannot use your own buttons. Sorry.
+                            effect: "slide",
+                            // [string] Can be either "slide" or "fade".
+                            interval: 3000,
+                            // [number] Time spent on each slide in milliseconds.
+                            auto: true,
+                            // [boolean] Start playing the slideshow on load.
+                            swap: true,
+                            // [boolean] show/hide stop and play buttons
+                            pauseOnHover: false,
+                            // [boolean] pause a playing slideshow on hover
+                            restartDelay: 2500
+                                    // [number] restart delay on inactive slideshow
+                        }
+                    });
+                });
+            </script>
+            <main>
+                <div id="misionvision">
+                    <div class="contenedor">
+                        <div id="logotipo">
+                            <h1>Dandole vida a tus ideas</h1>
+                            <br/>
+                            <br/>
+                        </div>
+                        <h2>Mision</h2>
+                        <p>Los acrílicos soportan largas horas a la exposición de los rayos ultravioletas, sin dañar su estructura y los colores del mismo. Los acrílicos son muchísimo más resistente que el vidrio, no se rompe con y al hacerlo no se "astilla" evitando accidentes, tiene sentido ecológico porque puede ser reciclado, en un 100%.</p>
+
+                        <h2>Vision</h2>
+                        <p>Los acrílicos soportan largas horas a la exposición de los rayos ultravioletas, sin dañar su estructura y los colores del mismo. Los acrílicos son muchísimo más resistente que el vidrio, no se rompe con y al hacerlo no se "astilla" evitando accidentes, tiene sentido ecológico porque puede ser reciclado, en un 100%.</p>
+                        <h2>Proyectos</h2>
+                    </div>
+                </div>   
+            </main>
+            <div id="destacado">
+                <div class="contenedor">
+                    <article>
+                        <img src="#{request.contextPath}/resources/img/18157211_676142425918108_2575754591002214489_n.jpg" alt="aviso leo publicidad"/>
+                    </article>
+                    <article>
+                        <img src="#{request.contextPath}/resources/img/avisos.jpeg" alt="aviso cedimec"/>
+                    </article>
+                    <article>
+                        <img src="#{request.contextPath}/resources/img/ips-jah-rafa-aviso-iluminado.jpeg" alt="portamicrofonos"/>
+                    </article>
+                </div>
+            </div>
+            <footer>
+                <div class="contenedor">
+                    <p class="copy">Fixed Up &copy; 2017</p>
+                    <div class="sociales">
+                        <a class="icon-facebook" href="https://es-la.facebook.com/innovacryl.ld/" target="_blank"></a>
+                        <a class="icon-twitter" href="https://twitter.com/innovacryl_ld" target="_blank"></a>
+                        <a class="icon-instagram" href="https://www.instagram.com/" target="_blank"></a>
+                        <a class="icon-paper-plane" href="#" target="_blank"></a>
+                    </div>
+                </div>
+            </footer>
+
+        </div>       		
+    </h:body>
+</html>
+

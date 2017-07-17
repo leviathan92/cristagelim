@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/resources/template/administrador/template.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="titulo">listar usuarios</ui:define>
+
+    <ui:define name="contenido">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="content-box-large">
+                    <div class="panel-heading">
+                        <div class="panel-title"><h2>Usuarios registrados</h2></div>
+                        <div class="panel-options">
+                            <c:forEach items="#{controladorSesion.rolSeleccionado.permisos}" var="p">
+                                <c:choose>
+                                    <c:when test="#{p.idPermiso eq 2}">
+                                        <span><h:link outcome="/#{p.url}" value="ingresar usuario">&nbsp;<i class="glyphicon glyphicon-plus"></i></h:link></span><br></br>
+                                    </c:when>
+                                </c:choose>
+                            </c:forEach>
+                        </div>
+                    </div>
+
+                    <div class="panel-body" >
+                        <h4><h:messages showSummary="true" showDetail="true"></h:messages></h4>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Documento</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Contraseña</th>
+                                    <th>Telefono</th>
+                                    <th>Direccion</th>
+                                    <th>Email</th>
+                                    <th>Id rol</th>
+                                    <th>Id area</th>
+                                    <th>Proyectos asignados</th>
+                                    <th>Opciones</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <c:forEach items="#{listarUsuarios.persona}" var="u">
+                                    <tr>
+                                        <td><h:outputText value="#{u.idPersona}"></h:outputText></td>
+                                        <td><h:outputText value="#{u.documento}"></h:outputText></td>
+                                        <td><h:outputText value="#{u.nombre}"></h:outputText></td>
+                                        <td><h:outputText value="#{u.apellido}"></h:outputText></td>
+                                        <td><h:outputText value="#{u.password}"></h:outputText></td>
+                                        <td><h:outputText value="#{u.telefono}"></h:outputText></td>
+                                        <td><h:outputText value="#{u.direccion}"></h:outputText></td>
+                                        <td><h:outputText value="#{u.email}"></h:outputText></td>
+                                        <td >
+                                            <table class="table">
+                                                <c:forEach items="#{u.roles}" var="r">
+                                                    <tr>
+                                                        <td>
+                                                            <h:outputText value="#{r.nombreRol}"></h:outputText>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </table>
+                                        </td>
+                                        <td><h:outputText value="#{u.areasIdArea.nombreArea}"></h:outputText></td>
+                                        <td >
+                                            <table class="table">
+                                                <c:forEach items="#{u.proyectoList}" var="p">
+                                                    <tr>
+                                                        <td>
+                                                            <h:outputText value="#{p.nombreProyecto}"></h:outputText>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <h:form>
+                                                <c:forEach items="#{controladorSesion.rolSeleccionado.permisos}" var="permiso">
+                                                    <c:choose>
+                                                        <c:when test="#{permiso.idPermiso eq 3}">
+                                                            <h:commandButton action="#{listarUsuarios.preparacionEditar(u)}" value="Editar"></h:commandButton>
+                                                        </c:when>
+                                                        <c:when test="#{permiso.idPermiso eq 4}">
+                                                            <h:commandButton class="btnModal1"  value="Elminar">
+                                                                <f:ajax event="click" listener="#{eliminarUsuario.preparacionEliminar(u)}" render=":content-modal-eliminar"></f:ajax>
+                                                            </h:commandButton>
+                                                        </c:when>
+
+                                                    </c:choose>
+                                                </c:forEach>
+
+                                            </h:form>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+
+                            </tbody>
+                        </table>
+
+                        <div id="myModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <h:form id="form-eliminar-usuario" prependId="false">
+                                    <h:panelGroup id="content-modal-eliminar" layout="block" class="modal-content">
+                                        <!-- Modal content-->
+
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Eliminar</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Desea eliminar a: ${eliminarUsuario.personaSeleccionado.nombre}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <h:commandButton class="btn btn-primary" value="ELIMINAR" action="#{eliminarUsuario.eliminarUsuario}"></h:commandButton>
+                                        </div>
+                                    </h:panelGroup>
+                                </h:form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+    <ui:define name="ultimosScripts">
+        <script>
+            /* function openModal() {
+             #("myModal").modal("show");
+             
+             }*/
+
+            $().ready(function () {
+                $("#btnModal").click(function () {
+                    $("#myModal").modal("show");
+                });
+            });
+
+            $().ready(function () {
+                $(".btnModal1").click(function () {
+                    $("#myModal").modal("show");
+                });
+            });
+
+        </script>
+    </ui:define>
+</ui:composition>
+

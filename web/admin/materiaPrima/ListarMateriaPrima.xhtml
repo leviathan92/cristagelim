@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/resources/template/administrador/template.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="titulo">listar Materia prima</ui:define>
+
+    <ui:define name="contenido">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="content-box-large">
+                    <div class="panel-heading">
+                        <div class="panel-title"><h1>Materia prima registrada</h1>  </div>
+                        <div class="panel-options">
+                            <c:forEach items="#{controladorSesion.rolSeleccionado.permisos}" var="p">
+                                <c:choose>
+                                    <c:when test="#{p.idPermiso eq 6}">
+                                        <span><h:link outcome="/#{p.url}" value="ingresar materia prima">&nbsp;<i class="glyphicon glyphicon-plus"></i></h:link></span><br></br>
+                                    </c:when>
+                                </c:choose>
+                            </c:forEach>
+                        </div>
+                    </div>
+
+                    <div class="panel-body" >
+                        <h:messages showSummary="true" showDetail="true"></h:messages>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Referencia</th>
+                                    <th>Tipo materia prima</th>
+                                    <th>Calibre</th>
+                                    <th>largo del material</th>
+                                    <th>alto del material</th>
+                                    <th>Opciones</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <c:forEach items="#{listarMateriaPrima.listaMateriaPrima}" var="m">
+                                    <tr>
+                                        <td><h:outputText value="#{m.idMateria}"></h:outputText></td>
+                                        <td><h:outputText value="#{m.tipoMateriaPrima}"></h:outputText></td>
+                                        <td><h:outputText value="#{m.referencia}"></h:outputText></td>
+                                        <td><h:outputText value="#{m.calibre}"></h:outputText></td>
+                                        <td><h:outputText value="#{m.dimensionLargo}"> cm</h:outputText></td>
+                                        <td><h:outputText value="#{m.dimensionAlto}"> cm</h:outputText></td>
+                                        <td>
+                                            <h:form>
+                                                <c:forEach items="#{controladorSesion.rolSeleccionado.permisos}" var="permiso">
+                                                    <c:choose>
+                                                        <c:when test="#{permiso.idPermiso eq 7}">
+                                                            <h:commandButton action="#{listarMateriaPrima.prepararEditar(m)}" value="Editar"></h:commandButton>
+                                                        </c:when>
+                                                        <c:when test="#{permiso.idPermiso eq 8}">
+                                                            <h:commandButton class="btnModal1"  value="elminar">
+                                                                <f:ajax event="click" listener="#{eliminarMateriaPrima.prepararEliminar(m)}" render=":content-modal-eliminar"></f:ajax>
+                                                            </h:commandButton>
+                                                        </c:when>
+                                                    </c:choose>
+                                                </c:forEach>
+                                            </h:form>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+
+                            </tbody>
+                        </table>
+
+
+                        <div id="myModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <h:form id="form-eliminar-usuario" prependId="false">
+                                    <h:panelGroup id="content-modal-eliminar" layout="block" class="modal-content">
+                                        <!-- Modal content-->
+
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">eliminar</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Va a eliminar la siguiente materia prima: ${eliminarMateriaPrima.materiaPrimaSeleccionada.referencia}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <h:commandButton class="btn btn-primary" value="ELIMINAR" action="#{eliminarMateriaPrima.eliminar()}"></h:commandButton>
+                                        </div>
+                                    </h:panelGroup>
+                                </h:form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+    <ui:define name="ultimosScripts">
+        <script>
+            /* function openModal() {
+             #("myModal").modal("show");
+             
+             }*/
+
+            $().ready(function () {
+                $("#btnModal").click(function () {
+                    $("#myModal").modal("show");
+                });
+            });
+
+            $().ready(function () {
+                $(".btnModal1").click(function () {
+                    $("#myModal").modal("show");
+                });
+            });
+
+        </script>
+    </ui:define>
+</ui:composition>

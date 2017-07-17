@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/resources/template/administrador/template.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:define name="titulo">Listar proveedores</ui:define>
+
+    <ui:define name="contenido">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="content-box-large">
+                    <div class="panel-heading">
+                        <div class="panel-title"><h1>Proveedores registrados</h1>  </div>
+                        <div class="panel-options">
+                            <c:forEach items="#{controladorSesion.rolSeleccionado.permisos}" var="p">
+                                <c:choose>
+                                    <c:when test="#{p.idPermiso eq 10}">
+                                        <span><h:link outcome="/#{p.url}" value="ingresar proveedor">&nbsp;<i class="glyphicon glyphicon-plus"></i></h:link></span><br></br>
+                                    </c:when>
+                                </c:choose>
+                            </c:forEach>
+                        </div>
+                    </div>
+
+                    <div class="panel-body" >
+                        <h:messages showSummary="true" showDetail="true"></h:messages>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nit proveedor</th>
+                                    <th>Nombre empresa</th>
+                                    <th>Direccion</th>
+                                    <th>Telefono</th>
+                                    <th>Representante legal</th>
+                                    <th>Ciudad</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <c:forEach items="#{listarProvedores.listaProveedores}" var="p">
+                                    <tr>
+                                        <td><h:outputText value="#{p.idProveedor}"></h:outputText></td>
+                                        <td><h:outputText value="#{p.nitProveedor}"></h:outputText></td>
+                                        <td><h:outputText value="#{p.nombreEmpresa}"></h:outputText></td>
+                                        <td><h:outputText value="#{p.direccion}"></h:outputText></td>
+                                        <td><h:outputText value="#{p.telefono}"></h:outputText></td>
+                                        <td><h:outputText value="#{p.representanteLegal}"></h:outputText></td>
+                                        <td><h:outputText value="#{p.ciudadesIdCiudad.nombreCiudad}"></h:outputText></td>
+                                        <td>
+                                            <h:form>
+                                                <c:forEach items="#{controladorSesion.rolSeleccionado.permisos}" var="permiso">
+                                                    <c:choose>
+                                                        <c:when test="#{permiso.idPermiso eq 11}">
+                                                            <h:commandButton action="#{listarProvedores.prepararEditar(p)}" value="Editar"></h:commandButton>
+                                                        </c:when>
+                                                        <c:when test="#{permiso.idPermiso eq 12}">
+                                                            <h:commandButton class="btnModal1"  value="elminar">
+                                                                <f:ajax event="click" listener="#{eliminarProveedor.prepararEliminar(p)}" render=":content-modal-eliminar"></f:ajax>
+                                                            </h:commandButton>
+                                                        </c:when>
+                                                    </c:choose>
+                                                </c:forEach>
+                                            </h:form>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+
+                        <div id="myModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <h:form id="form-eliminar-usuario" prependId="false">
+                                    <h:panelGroup id="content-modal-eliminar" layout="block" class="modal-content">
+                                        <!-- Modal content-->
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Eliminar</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Desea eliminar al siguiente proveedor: ${eliminarProveedor.proveedorSeleccionado.representanteLegal}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <h:commandButton class="btn btn-primary" value="ELIMINAR" action="#{eliminarProveedor.eliminar()}"></h:commandButton>
+                                        </div>
+                                    </h:panelGroup>
+                                </h:form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ui:define>
+
+    <ui:define name="ultimosScripts">
+        <script>
+            /* function openModal() {
+             #("myModal").modal("show");
+             
+             }*/
+
+            $().ready(function () {
+                $("#btnModal").click(function () {
+                    $("#myModal").modal("show");
+                });
+            });
+
+            $().ready(function () {
+                $(".btnModal1").click(function () {
+                    $("#myModal").modal("show");
+                });
+            });
+
+        </script>
+    </ui:define>
+
+</ui:composition>
+

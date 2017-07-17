@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <div class="col-md-2">
+        <div class="sidebar content-box" style="display: block;">
+            <ul class="nav">
+                <!-- Main menu -->
+                <li class="current" style="text-align: center"><a href="/fixed_up_prototipo_v4/admin/index.xhtml">#{controladorSesion.rolSeleccionado.nombreRol}</a></li>
+                <c:forEach items="#{controladorSesion.rolSeleccionado.permisos}" var="p">
+                    <c:if test="#{p.permisoPadre eq null}">
+                        <li><h:link outcome="/#{p.url}" value="#{p.nombrePermiso}"><i class="#{p.icon}"></i></h:link></li>
+                    </c:if>
+                </c:forEach>
+            </ul>
+        </div>
+    </div>
+</ui:fragment>

@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/resources/template/administrador/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="titulo">Crear usuario</ui:define>
+
+    <ui:define name="contenido">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="content-box-large">
+                    <div class="panel-heading">
+                        <div class="panel-title"><h2>Ingresar nuevo usuario</h2></div>
+
+
+                    </div>
+                    <div class="panel-body">
+
+                        <h:form id="form-usuario" prependId="false" class="form-horizontal" role="form">
+
+                            <div class="form-group">
+                                <label for="documento" class="col-sm-2 control-label">Documento</label>
+                                <div class="col-sm-10">
+                                    <h:inputText class="form-control" id="documento" a:placeholder="ingrese el documento" value="#{crearUsuario.documento}" required="true"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombre" class="col-sm-2 control-label">Nombre</label>
+                                <div class="col-sm-10">
+                                    <h:inputText class="form-control" id="nombre" a:placeholder="ingrese el nombre" value="#{crearUsuario.nombre}" required="true"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="apellido" class="col-sm-2 control-label">Apellido</label>
+                                <div class="col-sm-10">
+                                    <h:inputText class="form-control" id="apellido" a:placeholder="ingrese el apellido" value="#{crearUsuario.apellido}" required="true"/>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="contraseña" class="col-sm-2 control-label">Contraseña</label>
+                                <div class="col-sm-10">
+                                    <h:inputText class="form-control" id="contraseña" a:placeholder="ingrese la contraseña" value="#{crearUsuario.password}" required="true"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="telefono" class="col-sm-2 control-label">Telefono</label>
+                                <div class="col-sm-10">
+                                    <h:inputText class="form-control" id="telefono" a:placeholder="ingrese el telefono" value="#{crearUsuario.telefono}" required="true"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="direccion" class="col-sm-2 control-label">Direccion</label>
+                                <div class="col-sm-10">
+                                    <h:inputText class="form-control" id="direccion" a:placeholder="ingrese la direccion" value="#{crearUsuario.direccion}" required="true"/>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="email" class="col-sm-2 control-label">Email</label>
+                                <div class="col-sm-10">
+                                    <h:inputText class="form-control" id="email" a:placeholder="ingrese el email" value="#{crearUsuario.email}" required="true"/>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="rol" class="col-sm-2 control-label">Rol</label>
+                                <div class="col-sm-10">
+                                    <h:selectOneMenu value="#{crearUsuario.r}">
+                                        <f:selectItems value="#{rolController.roles}" var="td" itemLabel="#{td.nombreRol}"/>
+                                    </h:selectOneMenu>                                 
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="area" class="col-sm-2 control-label">Area</label>
+                                <div class="col-sm-10">
+                                    <h:selectOneMenu value="#{crearUsuario.p.areasIdArea}" converter="rolConverter">
+                                        <f:selectItems value="#{areasControlador.areaLista}" var="td" itemLabel="#{td.nombreArea}"/>
+                                    </h:selectOneMenu> 
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                
+                                <div class="col-sm-offset-3 col-sm-3">
+                                    <h:commandButton action="#{crearUsuario.crearUsuario()}" class="btn btn-primary" value="Aceptar"></h:commandButton> 
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <h:commandButton action="#{crearUsuario.cancelar()}" class="btn btn" value="Cancelar"></h:commandButton> 
+                                </div>
+                                
+                            </div>
+
+                        </h:form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ui:define>
+
+    <ui:define name="ultimosScripts">
+        <script>
+            /* function openModal() {
+             #("myModal").modal("show");
+             
+             }*/
+
+            $().ready(function () {
+                $("#btnModal").click(function () {
+                    $("#myModal").modal("show");
+                });
+            });
+
+            $().ready(function () {
+                $(".btnModal1").click(function () {
+                    $("#myModal").modal("show");
+                });
+            });
+
+        </script>
+    </ui:define>
+</ui:composition>
+

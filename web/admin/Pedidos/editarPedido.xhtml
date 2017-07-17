@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/resources/template/administrador/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="titulo">editar</ui:define>
+
+    <ui:define name="contenido">
+
+        <div class="row">
+            
+            <div class="col-md-12">
+
+                <div class="content-box-large">
+                    <div class="panel-heading">
+                        <div class="panel-title"><h2>Editar pedido</h2></div>
+
+                        <div class="panel-options">
+                            <!--<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+                            <a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>-->
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+                        <h:form id="form-usuario" prependId="false" class="form-horizontal" role="form">
+
+                            <div class="form-group">
+                                <label for="nombreProyecto" class="col-sm-2 control-label">Nombre proyecto</label>
+                                <div class="col-sm-10">
+                                    <h:inputText class="form-control" id="nombreProyecto" a:placeholder="Ingrese el nombre del proyecto" value="#{listarPedidos.pedidoSeleccionado.nombreProyecto}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="descripcion" class="col-sm-2 control-label">Descripcion</label>
+                                <div class="col-sm-10">
+                                    <h:inputText class="form-control" id="descripcion" a:placeholder="Ingrese la descripcion del proyecto" value="#{listarPedidos.pedidoSeleccionado.descripcion}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pago" class="col-sm-2 control-label">realizo pago </label>
+                                <div class="col-sm-10">
+                                    <h:inputText class="form-control" id="pago" a:placeholder="Ingrese 1 se ya se realizo el pago, 0 si no lo ha realizado" value="#{listarPedidos.pedidoSeleccionado.realizoPago}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-3">
+                                    <h:commandButton action="#{listarPedidos.cancelar()}" class="btn" value="cancelar"></h:commandButton>
+                                </div>
+                                <div class="col-sm-3">
+                                    <h:form>
+                                        <h:commandButton action="#{listarPedidos.actualizarPedido()}" class="btn btn-primary" value="Guardar"></h:commandButton>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    </ui:define>
+
+</ui:composition>
+

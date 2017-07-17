@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/resources/template/vendedor/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="titulo">listar pedidos</ui:define>
+
+    <ui:define name="contenido">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="content-box-large">
+                    <div class="panel-heading">
+                        <div class="panel-title"><h2>pedidos registrados del sistema</h2></div>
+                        <div class="panel-options">
+                            <span><h:link outcome="/vendedor/pedidos/crearPedido.xhtml" value="Crear pedido"/> </span><br></br>
+                        </div>
+                    </div>
+
+                    <div class="panel-body" >
+                        <h:messages showSummary="true" showDetail="true"></h:messages>
+
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>nombre proyecto</th>
+                                    <th>descripcion</th>
+                                    <th>realizo pago</th>
+                                    <th>vendedor</th>
+                                    <th>Opciones</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <c:forEach items="#{listarPedidos.listaPedidos}" var="p">
+                                    <tr>
+                                        <td><h:outputText value="#{p.idPedido}"></h:outputText></td>
+                                        <td><h:outputText value="#{p.nombreProyecto}"></h:outputText></td>
+                                        <td><h:outputText value="#{p.descripcion}"></h:outputText></td>
+                                        <td><h:outputText value="#{p.realizoPago}"></h:outputText></td>
+                                        <td><h:outputText value="#{p.personasIdPersona.nombre} #{p.personasIdPersona.apellido}"></h:outputText></td>
+                                        <td>
+                                            <h:form>
+                                                <h:commandButton action="#{listarPedidos.preparacionEditar(p)}" value="Editar"></h:commandButton>
+                                                <h:commandButton class="btnModal1"  value="elminar">
+                                                    <f:ajax event="click" listener="#{eliminarPedido.preparacionEliminar(p)}" render=":content-modal-eliminar"></f:ajax>
+                                                </h:commandButton>
+                                            </h:form>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+
+                            </tbody>
+                        </table>
+
+                        <div id="myModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <h:form id="form-eliminar-usuario" prependId="false">
+                                    <h:panelGroup id="content-modal-eliminar" layout="block" class="modal-content">
+                                        <!-- Modal content-->
+
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">eliminar</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Desea el eliminar a: ${eliminarPedido.pedidoSeleccionado.nombreProyecto}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <h:commandButton class="btn btn-primary" value="ELIMINAR" action="#{eliminarPedido.eliminarPedido()}"></h:commandButton>
+                                        </div>
+                                    </h:panelGroup>
+                                </h:form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </ui:define>
+
+    <ui:define name="ultimosScripts">
+        <script>
+            /* function openModal() {
+             #("myModal").modal("show");
+             
+             }*/
+
+            $().ready(function () {
+                $("#btnModal").click(function () {
+                    $("#myModal").modal("show");
+                });
+            });
+
+            $().ready(function () {
+                $(".btnModal1").click(function () {
+                    $("#myModal").modal("show");
+                });
+            });
+
+        </script>
+    </ui:define>
+</ui:composition>
+
