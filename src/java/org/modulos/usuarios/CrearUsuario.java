@@ -184,6 +184,7 @@ public class CrearUsuario implements Serializable {
         pfl.create(p);
         return "/admin/usuarios/listarUsuarios.xhtml?faces-redirect=true";
         
+        
     }
 
     public String cancelar() {
