@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.controladores.admin.usuarios;
+package org.modulos.usuarios;
 
 import java.util.List;
 import javax.annotation.PostConstruct;
